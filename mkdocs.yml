@@ -1,0 +1,168 @@
+site_name: 手术器械护士机器助手
+site_url: https://your-org.github.io/surgbot-docs/
+site_description: SurgBot — 北京理工大学具身空间智能实验室 × 雄安宣武医院神经外科
+site_author: SurgBot Team
+
+repo_name: surgbot-docs
+repo_url: https://github.com/your-org/surgbot-docs
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: zh
+  palette:
+    - scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: 切换至深色模式
+    - scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: 切换至浅色模式
+  font:
+    text: Noto Sans SC
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.suggest
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+
+plugins:
+  - search:
+      lang: zh
+  - tags
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+      title: 本页目录
+
+extra:
+  version:
+    provider: mike
+    default: latest
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/your-org/surgbot-docs
+
+nav:
+  - 首页: index.md
+
+  - 项目背景:
+    - 项目简介: background/introduction.md
+    - 团队与合作方: background/team.md
+    - 硬件平台: background/hardware.md
+
+  - 系统设计:
+    - 总体架构: design/architecture.md
+    - 人机协同方案: design/human_robot_collab.md
+    - 模块接口定义: design/module_interfaces.md
+    - 数据流规范: design/data_flow.md
+    - 全局安全约束: design/safety_constraints.md
+
+  - 模块文档:
+    - 感知模块:
+      - 概述与状态: modules/perception/index.md
+      - YOLO 器械检测: modules/perception/yolo_detection.md
+      - 相机标定: modules/perception/camera_calibration.md
+      - 夹取点算法: modules/perception/grasp_algorithm.md
+    - NLP 模块:
+      - 概述与状态: modules/nlp/index.md
+      - Qwen2.5 SFT 微调: modules/nlp/qwen_sft.md
+      - DPO 对齐优化: modules/nlp/dpo_alignment.md
+      - 器械标准化词库: modules/nlp/instrument_vocab.md
+    - 决策模块:
+      - 概述与状态: modules/decision/index.md
+      - OpenVLA 进展: modules/decision/openvla_progress.md
+      - LIBERO 仿真评测: modules/decision/libero_eval.md
+      - 数据流水线: modules/decision/data_pipeline.md
+    - 执行模块:
+      - 概述与状态: modules/execution/index.md
+      - CR5 控制接口: modules/execution/dobot_cr5_control.md
+      - 运动规划: modules/execution/motion_planning.md
+      - 安全策略实现: modules/execution/safety_strategy.md
+    - 仿真模块:
+      - 概述与状态: modules/simulation/index.md
+      - Isaac Sim 环境搭建: modules/simulation/isaac_sim_setup.md
+      - 虚拟手术室方案: modules/simulation/surgery_room_sim.md
+
+  - Sim2Real 状态:
+    - 验证状态面板: sim2real/status.md
+
+  - 全局追踪:
+    - 问题与决策追踪: tracker/issues.md
+    - 里程碑: tracker/milestones.md
+
+  - 项目进展:
+    - 2026.02 现场测试: progress/field_test_202602.md
+    - OpenVLA 阶段进展: progress/openvla_status.md
+
+  - 会议记录:
+    - 2026-02-05 现场评审: meeting/2026/0205_field_review.md
+
+  - 测试记录:
+    - 2026.02 现场测试记录: testing/records/202602_onsite.md
+
+  - 成员工作:
+    - 陈端端: members/chen_duanduan.md
+    - 李淑雅: members/li_shuya.md
+    - 任松: members/ren_song.md
+    - 谭文韬: members/tan_wentao.md
+
+  - 参考资料:
+    - 论文列表: references/paper_list.md
+    - 相关项目: references/related_projects.md
+    - 领域知识: references/domain_knowledge.md
+
+  - 操作指南:
+    - Git 快速入门: guides/git_quickstart.md
+    - 开发环境搭建: guides/env_setup.md
+    - 数据集管理: guides/dataset_management.md
+    - 文档编写规范: guides/doc_convention.md
