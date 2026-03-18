@@ -1,10 +1,10 @@
 site_name: 手术器械护士机器助手
-site_url: https://your-org.github.io/surgbot-docs/
+site_url: https://zebedee2021.github.io/surgbot-docs-v2/
 site_description: SurgBot — 北京理工大学具身空间智能实验室 × 雄安宣武医院神经外科
 site_author: SurgBot Team
 
-repo_name: surgbot-docs
-repo_url: https://github.com/your-org/surgbot-docs
+repo_name: Zebedee2021/surgbot-docs-v2
+repo_url: https://github.com/Zebedee2021/surgbot-docs-v2
 edit_uri: edit/main/docs/
 
 theme:
@@ -97,7 +97,7 @@ extra:
     default: latest
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/your-org/surgbot-docs
+      link: https://github.com/Zebedee2021/surgbot-docs-v2
 
 nav:
   - 首页: index.md
