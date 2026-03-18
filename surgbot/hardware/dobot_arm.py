@@ -58,6 +58,10 @@ log = get_logger("arm")
 # ──────────────────────────────────────────
 
 def _import_controller():
+    """
+    尝试导入底层驱动。找不到时静默返回 None（不打印 WARNING），
+    由调用方（DobotArm.__init__）根据是否传入 mock=True 决定日志级别。
+    """
     try:
         from hardware._controller import RobotControlModule
         return RobotControlModule
@@ -73,9 +77,9 @@ def _import_controller():
             log.info(f"[Arm] Loaded RobotControlModule from {original_path}")
             return RobotControlModule
         except ImportError as e:
-            log.warning(f"[Arm] Failed to import from {original_path}: {e}")
+            log.debug(f"[Arm] Import from {original_path} failed: {e}")
 
-    log.warning("[Arm] RobotControlModule not found — running in MOCK mode")
+    # 静默返回 None，调用方负责决定如何记录
     return None
 
 
@@ -89,8 +93,18 @@ RobotControlModule = _import_controller()
 class _MockRobot:
     """当机械臂未连接时的占位实现，接口与 RobotControlModule 一致。"""
 
-    def __init__(self, ip, **_):
-        log.warning(f"[Arm] MOCK mode — no real robot at {ip}")
+    # 急停计数（供测试查询）
+    stop_count: int = 0
+
+    def __init__(self, ip: str, intentional: bool = False, **_):
+        """
+        intentional=True  → 明确传入 mock=True（演示/测试），用 INFO 级别
+        intentional=False → 控制器找不到的自动降级，用 WARNING 级别
+        """
+        if intentional:
+            log.info(f"[Arm] Mock 模式（演示/离线开发）— ip={ip} 未连接")
+        else:
+            log.warning(f"[Arm] 控制器模块未找到，自动降级为 Mock — 请确认是否需要真实连接 ip={ip}")
 
     def executePath(self, path):
         log.info(f"[MOCK] executePath {len(path)} points")
@@ -101,6 +115,7 @@ class _MockRobot:
         return False
 
     def stopCurrentMotion(self):
+        _MockRobot.stop_count += 1
         log.info("[MOCK] stopCurrentMotion")
 
     def setSpeed(self, speed):
@@ -169,8 +184,13 @@ class DobotArm:
         self._current_instrument_id: str = ""
 
         # 初始化底层驱动
-        if mock or RobotControlModule is None:
-            self._robot = _MockRobot(ip=cfg.robot.ip)
+        if mock:
+            # 明确要求 mock（演示/单测）→ INFO 级别
+            self._robot = _MockRobot(ip=cfg.robot.ip, intentional=True)
+            self._is_mock = True
+        elif RobotControlModule is None:
+            # 控制器找不到的被动降级 → WARNING 级别
+            self._robot = _MockRobot(ip=cfg.robot.ip, intentional=False)
             self._is_mock = True
         else:
             log.info(f"[Arm] Connecting to Dobot @ {cfg.robot.ip} ...")
