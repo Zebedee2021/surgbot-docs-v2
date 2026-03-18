@@ -73,6 +73,7 @@ class GraspTarget:
 class ActionType(Enum):
     """动作原语枚举，对应执行层的单个运动步骤。"""
     MOVE_APPROACH   = "move_approach"   # 移动到夹取点正上方（z + approach_offset）
+    VISUAL_CONFIRM  = "visual_confirm"  # 视觉二次确认（ROI 重新推理）
     MOVE_GRASP      = "move_grasp"      # 下降到夹取点
     CLOSE_GRIPPER   = "close_gripper"   # 闭合夹爪（夹取）
     MOVE_LIFT       = "move_lift"       # 提升（离开托盘）
@@ -87,7 +88,8 @@ class ActionType(Enum):
 class ActionStep:
     """单个动作步骤。"""
     action_type: ActionType
-    target_pose: Optional[list[float]] = None   # [x,y,z,rx,ry,rz, mode]，MOVE_* 类型使用
+    target_pose: Optional[list[float]] = None   # [x,y,z,..., mode]，MOVE_* 类型使用
+    orientation_deg: float = 0.0                # 末端 Rz（°），MOVE_GRASP / MOVE_APPROACH 使用
     gripper_preset_id: int = -1                 # CLOSE/OPEN_GRIPPER 类型使用
     description: str = ""                       # 可读描述，用于日志
 
@@ -102,7 +104,8 @@ class ActionSequence:
     steps: list[ActionStep]
     instrument_id: str
     instrument_name: str
-    grasp_target: GraspTarget
+    slot_id: str = ""
+    grasp_target: Optional[GraspTarget] = None
     created_at: float = field(default_factory=__import__('time').time)
 
     def __len__(self) -> int:

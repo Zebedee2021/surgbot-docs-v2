@@ -38,7 +38,7 @@ z_min =   100.0     # 不允许低于此高度（托盘面保护）
 z_max =   550.0
 
 force_threshold        = 1.0    # 力反馈触发阈值（N），越小越灵敏
-max_single_step_dist   = 400.0  # mm，单步最大移动距离，超过则拒绝执行
+max_single_step_dist   = 600.0  # mm，单步最大移动距离（工作空间对角线约780mm，slot→deliver约450mm）
 
 
 [perception]

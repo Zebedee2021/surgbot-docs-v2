@@ -1,0 +1,72 @@
+{
+  "_comment": "器械槽位注册表 — 每次重新标定后更新 grasp_point / orientation_deg",
+  "_version": "0.2.0",
+  "_calibrated": "2026-03-18",
+  "_calibrator": "待标定",
+
+  "slots": [
+    {
+      "slot_id": "slot_01",
+      "instrument_id": "INS-031",
+      "name": "持针器_大",
+      "aliases": ["持针器", "大持针器", "needle holder", "持针"],
+      "grasp_point": [120.0, -80.0, 181.0],
+      "orientation_deg": 45.0,
+      "gripper_preset_id": 3,
+      "roi": {"x1": 80, "y1": 60, "x2": 160, "y2": 140},
+      "enabled": true,
+      "notes": "最常用，优先验证"
+    },
+    {
+      "slot_id": "slot_02",
+      "instrument_id": "INS-012",
+      "name": "剪刀",
+      "aliases": ["剪刀", "scissors", "组织剪", "弯剪"],
+      "grasp_point": [200.0, -80.0, 181.0],
+      "orientation_deg": 0.0,
+      "gripper_preset_id": 2,
+      "roi": {"x1": 160, "y1": 60, "x2": 240, "y2": 140},
+      "enabled": true,
+      "notes": ""
+    },
+    {
+      "slot_id": "slot_03",
+      "instrument_id": "INS-007",
+      "name": "镊子",
+      "aliases": ["镊子", "forceps", "有齿镊", "无齿镊", "解剖镊"],
+      "grasp_point": [280.0, -80.0, 181.0],
+      "orientation_deg": 90.0,
+      "gripper_preset_id": 1,
+      "roi": {"x1": 240, "y1": 60, "x2": 320, "y2": 140},
+      "enabled": true,
+      "notes": ""
+    },
+    {
+      "slot_id": "slot_04",
+      "instrument_id": "INS-003",
+      "name": "刀柄",
+      "aliases": ["刀柄", "手术刀", "scalpel", "刀", "切"],
+      "grasp_point": [360.0, -80.0, 181.0],
+      "orientation_deg": 30.0,
+      "gripper_preset_id": 2,
+      "roi": {"x1": 320, "y1": 60, "x2": 400, "y2": 140},
+      "enabled": true,
+      "notes": "刀片朝向注意安全"
+    },
+    {
+      "slot_id": "slot_05",
+      "instrument_id": "INS-032",
+      "name": "持针器_小",
+      "aliases": ["小持针器", "细持针器"],
+      "grasp_point": [440.0, -80.0, 181.0],
+      "orientation_deg": 45.0,
+      "gripper_preset_id": 2,
+      "roi": {"x1": 400, "y1": 60, "x2": 480, "y2": 140},
+      "enabled": true,
+      "notes": ""
+    }
+  ],
+
+  "deliver_point": [-50.0, -250.0, 350.0],
+  "reset_pose":    [  0.0,  -50.0, 400.0]
+}

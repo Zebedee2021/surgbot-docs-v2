@@ -93,7 +93,8 @@ class SafetyConfig:
     force_threshold: float = 1.0
 
     # 最大单步移动距离（mm）；超过视为异常轨迹
-    max_single_step_dist: float = 400.0
+    # 注：工作空间对角线约 780mm，slot→deliver 约 450mm，设 600 为合理上限
+    max_single_step_dist: float = 600.0
 
 
 @dataclass
@@ -101,6 +102,8 @@ class PerceptionConfig:
     """感知模块参数。"""
     # 最低置信度；低于此值触发 fallback 到名义坐标
     min_confidence: float = 0.70
+    # 高置信度阈值；高于此值跳过视觉二次确认
+    confidence_threshold_high: float = 0.85
     # 朝向角最大修正量（°）；超过此值视为识别异常
     max_orientation_correction_deg: float = 45.0
     # ROI 扩展像素（在注册 ROI 基础上向外扩展，提升容错）
@@ -112,7 +115,9 @@ class NLPConfig:
     """NLP / ASR 模块参数。"""
     # ASR 模型路径（本地 FunASR）
     asr_model_dir: str = "models/funasr"
-    # 最低指令置信度
+    # 最低指令置信度（KeywordMatcher 使用）
+    keyword_confidence_threshold: float = 0.60
+    # 最低指令置信度（兼容旧字段名）
     min_command_confidence: float = 0.60
     # 唤醒词（空表示无需唤醒直接监听）
     wake_word: str = ""
@@ -124,6 +129,7 @@ class PathsConfig:
     instrument_registry: str = "data/instrument_registry.json"
     hand_eye_matrix: str     = "data/hand_eye_latest.npy"
     log_dir: str             = "logs"
+    data_dir: str            = "data"
 
 
 # ──────────────────────────────────────────
