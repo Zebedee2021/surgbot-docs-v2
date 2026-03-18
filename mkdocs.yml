@@ -142,6 +142,7 @@ nav:
     - 里程碑: tracker/milestones.md
 
   - 项目进展:
+    - 五一冲刺计划: progress/mvp_sprint.md
     - 2026.02 现场测试: progress/field_test_202602.md
     - OpenVLA 阶段进展: progress/openvla_status.md
 

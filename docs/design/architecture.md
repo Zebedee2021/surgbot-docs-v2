@@ -2,12 +2,14 @@
 
 ## 系统分层
 
-系统由五大模块组成，形成从感知到执行的完整闭环：
+系统由五大模块组成，形成从感知到执行的完整闭环。
+
+### 完整版架构（目标）
 
 ```mermaid
 graph TB
     subgraph 感知层
-        CAM[双目摄像头] --> YOLO[YOLO 器械检测]
+        CAM[RTSP 网络摄像头] --> YOLO[YOLO 器械检测]
         CAM --> CAL[手眼标定]
         YOLO --> GP[夹取点算法]
     end
@@ -23,14 +25,38 @@ graph TB
     subgraph 执行层
         ACT --> VAL[路径安全校验]
         VAL --> MC[运动规划]
-        MC --> CR5[越疆 CR5AF 机械臂]
-        CR5 --> GRIP[夹爪控制]
+        MC --> CR5[Dobot 机械臂]
+        CR5 --> GRIP[夹爪 Modbus RTU]
     end
     subgraph 仿真层
         SIM[Isaac Sim] -.-> VLA
         SIM -.-> CR5
     end
 ```
+
+### MVP 简化版架构（五一演示目标）
+
+> 策略：用**定制支架槽位**替代乱堆器械，大幅降低识别难度，快速建立可演示的闭环。
+> 详见 [五一冲刺计划](../progress/mvp_sprint.md)。
+
+```mermaid
+graph LR
+    MIC[麦克风] --> ASR[本地 FunASR]
+    ASR --> NLP[关键词匹配]
+    NLP -->|instrument_id| REG[槽位注册表]
+    REG -->|ROI 坐标| DET[ROI 内 YOLO]
+    DET -->|GraspTarget| SAFE[安全校验]
+    SAFE --> ARM[Dobot 机械臂]
+    ARM --> GRIP[夹爪]
+    GRIP -->|力反馈| DOC[医生]
+```
+
+| 层 | 完整版 | MVP 版 |
+|----|--------|-------|
+| 感知 | 全图 YOLO | ROI 裁剪后 YOLO（槽位先验） |
+| 语言 | Qwen2.5 SFT | 关键词匹配 |
+| 决策 | OpenVLA | 规则 rule_planner |
+| 执行 | 同 | 同 |
 
 ## 状态机
 
