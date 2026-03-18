@@ -4,6 +4,15 @@
   <p>SurgBot — 北京理工大学具身空间智能实验室 × 雄安宣武医院神经外科</p>
 </div>
 
+<p align="center">
+  <a href="https://colab.research.google.com/github/Zebedee2021/surgbot-docs-v2/blob/main/notebooks/surgbot_demo.ipynb">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+  </a>
+</p>
+
+!!! tip "在线演示"
+    点击上方 **Open in Colab** 按钮，无需安装，直接在浏览器中运行：工作空间 3D 可视化、运动轨迹预览、完整 mock 流程演示。
+
 ## 快速导航
 
 <div class="grid cards" markdown>

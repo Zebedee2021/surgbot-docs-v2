@@ -1,0 +1,59 @@
+# ============================================================
+# SurgBot 全局配置文件
+# 修改参数后重启程序生效，无需改代码
+# 雄安测试 P0-02 解决方案
+# ============================================================
+
+[robot]
+ip                  = "192.168.144.49"
+dashboard_port      = 29999
+feed_port           = 30005
+
+speed               = 30        # 速度百分比 1~100，演示时建议 20~30
+z_approach_offset   = 150.0     # mm，抓取点正上方安全高度
+z_grasp_offset      = 1.0       # mm，下降到夹取点时的微调
+
+# 待机姿态 [j1,j2,j3,j4,j5,j6, mode=1(关节角)]
+reset_pose    = [0.0, 32.6, -129.1, 6.7, 90.0, -90.0, 1]
+# 递送姿态
+deliver_pose  = [0.0, -50.2, -67.3, 112.5, 90.0, -90.0, 1]
+
+
+[gripper]
+baud_rate     = 115200
+parity        = "N"
+stop_bits     = 1
+slave_id      = 1
+default_speed = 900     # 夹爪运动速度 10~1000
+
+
+[safety]
+# 工作空间边界（机械臂坐标系，mm）
+# 调整前请确认托盘位置和摄像头位置不在边界内
+x_min =  -600.0
+x_max =   600.0
+y_min =  -700.0
+y_max =   100.0
+z_min =   100.0     # 不允许低于此高度（托盘面保护）
+z_max =   550.0
+
+force_threshold        = 1.0    # 力反馈触发阈值（N），越小越灵敏
+max_single_step_dist   = 400.0  # mm，单步最大移动距离，超过则拒绝执行
+
+
+[perception]
+min_confidence                  = 0.70   # YOLO 最低置信度，低于此值用名义坐标兜底
+max_orientation_correction_deg  = 45.0   # 最大朝向修正角度
+roi_padding_px                  = 10     # ROI 向外扩展像素数
+
+
+[nlp]
+asr_model_dir           = "models/funasr"
+min_command_confidence  = 0.60
+wake_word               = ""     # 空字符串表示无需唤醒词
+
+
+[paths]
+instrument_registry = "data/instrument_registry.json"
+hand_eye_matrix     = "data/hand_eye_latest.npy"
+log_dir             = "logs"

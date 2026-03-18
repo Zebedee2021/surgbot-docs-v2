@@ -1,0 +1,57 @@
+2026-03-18 14:14:21.066 | INFO     | session=a45a30a1 | mod=test         | Logger test OK
+2026-03-18 14:14:21.069 | INFO     | session=a45a30a1 | mod=nlp          | CMD instrument_id=INS-031 name='持针器_大' conf=0.92 text='递持针器'
+2026-03-18 14:14:21.070 | INFO     | session=a45a30a1 | mod=perception   | GRASP [conf=0.95] slot=slot_01 id=INS-031 xyz=(120.5,-30.2,180.0) rz=45.0°
+2026-03-18 14:19:56.598 | INFO     | session=cced4d52 | mod=arm          | [Arm] Loaded RobotControlModule from D:\2026-Claude\医疗机器人代码\RobotServer
+2026-03-18 14:19:56.600 | WARNING  | session=cced4d52 | mod=arm          | [Arm] MOCK mode — no real robot at 192.168.144.49
+2026-03-18 14:19:56.601 | INFO     | session=cced4d52 | mod=arm          | [MOCK] setSpeed 30
+2026-03-18 14:19:56.601 | INFO     | session=cced4d52 | mod=arm          | [MOCK] setForceThreshold 1.0
+2026-03-18 14:19:56.601 | INFO     | session=cced4d52 | mod=arm          | [Arm] Ready  speed=30  z_comp=+1.0mm  mock=True
+2026-03-18 14:19:56.602 | INFO     | session=cced4d52 | mod=arm          | [MOCK] setSpeed 25
+2026-03-18 14:19:56.602 | INFO     | session=cced4d52 | mod=arm          | [Arm] Speed updated → 25
+2026-03-18 14:19:56.602 | INFO     | session=cced4d52 | mod=arm          | [Arm] Z compensation → +5.0mm
+2026-03-18 14:19:56.602 | INFO     | session=cced4d52 | mod=arm          | [MOCK] setForceThreshold 1.5
+2026-03-18 14:19:56.602 | INFO     | session=cced4d52 | mod=arm          | [Arm] Force threshold → 1.50N
+2026-03-18 14:19:56.602 | INFO     | session=cced4d52 | mod=arm          | [Arm] → approach  xyz=(120.5,-30.2,335.0)  rz=45.0°
+2026-03-18 14:19:56.602 | INFO     | session=cced4d52 | mod=execution    | MOTION_START action=approach pose=(120.5,-30.2,335.0) id=
+2026-03-18 14:19:56.602 | INFO     | session=cced4d52 | mod=arm          | [MOCK] executePath 1 points
+2026-03-18 14:19:56.653 | INFO     | session=cced4d52 | mod=execution    | MOTION_DONE  action=approach elapsed=50ms
+2026-03-18 14:19:56.653 | INFO     | session=cced4d52 | mod=arm          | [Arm] → approach  xyz=(999.0,-30.2,335.0)  rz=0.0°
+2026-03-18 14:19:56.654 | ERROR    | session=cced4d52 | mod=arm          | [Arm] Safety BLOCKED [approach]: [point[0]] Point (999.0, -30.2, 335.0) outside workspace X[-600.0,600.0] Y[-700.0,100.0] Z[100.0,550.0]
+2026-03-18 14:19:56.654 | INFO     | session=cced4d52 | mod=arm          | [Arm] === pick_and_deliver START  id=INS-031 ===
+2026-03-18 14:19:56.654 | INFO     | session=cced4d52 | mod=arm          | [Arm] → approach  xyz=(120.5,-30.2,335.0)  rz=45.0°
+2026-03-18 14:19:56.654 | INFO     | session=cced4d52 | mod=execution    | MOTION_START action=approach pose=(120.5,-30.2,335.0) id=INS-031
+2026-03-18 14:19:56.654 | INFO     | session=cced4d52 | mod=arm          | [MOCK] executePath 1 points
+2026-03-18 14:19:56.705 | INFO     | session=cced4d52 | mod=execution    | MOTION_DONE  action=approach elapsed=51ms
+2026-03-18 14:19:56.705 | INFO     | session=cced4d52 | mod=arm          | [Arm] → descend to grasp  xyz=(120.5,-30.2,185.0)
+2026-03-18 14:19:56.705 | INFO     | session=cced4d52 | mod=execution    | MOTION_START action=grasp_descend pose=(120.5,-30.2,185.0) id=INS-031
+2026-03-18 14:19:56.705 | INFO     | session=cced4d52 | mod=arm          | [MOCK] executePath 1 points
+2026-03-18 14:19:56.756 | INFO     | session=cced4d52 | mod=arm          | [MOCK] open_gripper preset=3
+2026-03-18 14:19:57.057 | INFO     | session=cced4d52 | mod=arm          | [Arm] → close gripper  preset=3
+2026-03-18 14:19:57.057 | INFO     | session=cced4d52 | mod=arm          | [MOCK] close_gripper preset=3
+2026-03-18 14:19:57.358 | INFO     | session=cced4d52 | mod=execution    | MOTION_DONE  action=grasp elapsed=652ms
+2026-03-18 14:19:57.358 | INFO     | session=cced4d52 | mod=arm          | [Arm] Grasp result: gripped=True
+2026-03-18 14:19:57.358 | INFO     | session=cced4d52 | mod=arm          | [Arm] → lift to (120.5,-30.2,335.0)
+2026-03-18 14:19:57.358 | INFO     | session=cced4d52 | mod=execution    | MOTION_START action=lift pose=(120.5,-30.2,335.0) id=INS-031
+2026-03-18 14:19:57.358 | INFO     | session=cced4d52 | mod=arm          | [MOCK] executePath 1 points
+2026-03-18 14:19:57.409 | INFO     | session=cced4d52 | mod=execution    | MOTION_DONE  action=lift elapsed=51ms
+2026-03-18 14:19:57.409 | INFO     | session=cced4d52 | mod=arm          | [Arm] → deliver (via reset_pose)
+2026-03-18 14:19:57.409 | INFO     | session=cced4d52 | mod=execution    | MOTION_START action=deliver pose=(0.0,32.6,-129.1) id=INS-031
+2026-03-18 14:19:57.409 | INFO     | session=cced4d52 | mod=arm          | [MOCK] executePath 2 points
+2026-03-18 14:19:57.459 | INFO     | session=cced4d52 | mod=execution    | MOTION_DONE  action=deliver elapsed=51ms
+2026-03-18 14:19:57.460 | INFO     | session=cced4d52 | mod=arm          | [Arm] Waiting for handover  timeout=60s ...
+2026-03-18 14:19:57.460 | INFO     | session=cced4d52 | mod=arm          | [MOCK] startForceDetection
+2026-03-18 14:20:57.486 | INFO     | session=cced4d52 | mod=arm          | [MOCK] stopForceDetection
+2026-03-18 14:20:57.487 | WARNING  | session=cced4d52 | mod=arm          | [Arm] Handover timeout (60s) — forcing gripper open
+2026-03-18 14:20:57.487 | INFO     | session=cced4d52 | mod=arm          | [MOCK] open_gripper preset=3
+2026-03-18 14:20:57.987 | INFO     | session=cced4d52 | mod=arm          | [Arm] → reset pose
+2026-03-18 14:20:57.988 | INFO     | session=cced4d52 | mod=execution    | MOTION_START action=reset pose=(0.0,32.6,-129.1) id=INS-031
+2026-03-18 14:20:57.988 | INFO     | session=cced4d52 | mod=arm          | [MOCK] executePath 1 points
+2026-03-18 14:20:58.039 | INFO     | session=cced4d52 | mod=execution    | MOTION_DONE  action=reset elapsed=51ms
+2026-03-18 14:20:58.039 | INFO     | session=cced4d52 | mod=arm          | [Arm] === pick_and_deliver END  gripped=True taken=False  61385ms ===
+2026-03-18 14:20:58.039 | INFO     | session=cced4d52 | mod=arm          | [Arm] Shutting down ...
+2026-03-18 14:20:58.039 | INFO     | session=cced4d52 | mod=arm          | [Arm] → reset pose
+2026-03-18 14:20:58.040 | INFO     | session=cced4d52 | mod=execution    | MOTION_START action=reset pose=(0.0,32.6,-129.1) id=INS-031
+2026-03-18 14:20:58.040 | INFO     | session=cced4d52 | mod=arm          | [MOCK] executePath 1 points
+2026-03-18 14:20:58.091 | INFO     | session=cced4d52 | mod=execution    | MOTION_DONE  action=reset elapsed=52ms
+2026-03-18 14:20:58.092 | INFO     | session=cced4d52 | mod=arm          | [MOCK] shutdown
+2026-03-18 14:20:58.092 | INFO     | session=cced4d52 | mod=arm          | [Arm] Shutdown complete

@@ -1,0 +1,2 @@
+2026-03-18 14:19:56.654 | ERROR    | session=cced4d52 | mod=arm          | [Arm] Safety BLOCKED [approach]: [point[0]] Point (999.0, -30.2, 335.0) outside workspace X[-600.0,600.0] Y[-700.0,100.0] Z[100.0,550.0]
+
