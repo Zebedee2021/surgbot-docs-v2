@@ -99,6 +99,7 @@ nav:
     - 项目简介: background/introduction.md
     - 团队与合作方: background/team.md
     - 硬件平台: background/hardware.md
+    - 手术室环境与操作规范: background/or_environment.md
 
   - 系统设计:
     - 总体架构: design/architecture.md
