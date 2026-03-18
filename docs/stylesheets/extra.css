@@ -155,6 +155,38 @@
   gap: 4px;
 }
 
+/* ---------- 侧边栏导航层级区分 ---------- */
+
+/* 二级分组标题（如「感知模块」「NLP 模块」）*/
+.md-nav--primary .md-nav__item--section > .md-nav__link {
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--md-default-fg-color--light);
+  margin-top: .6rem;
+  padding-left: .6rem;
+  border-left: 3px solid var(--md-primary-fg-color);
+}
+
+/* 分组标题悬停时不变色，保持静态感 */
+.md-nav--primary .md-nav__item--section > .md-nav__link:hover {
+  color: var(--md-default-fg-color--light);
+}
+
+/* 三级页面链接（如「概述与状态」「YOLO器械检测」）*/
+.md-nav--primary .md-nav__item--section .md-nav .md-nav__link {
+  font-size: .82rem;
+  font-weight: 400;
+  padding-left: 1.1rem;
+}
+
+/* 激活页面链接加粗 */
+.md-nav--primary .md-nav__item--section .md-nav .md-nav__item--active > .md-nav__link {
+  font-weight: 600;
+  color: var(--md-accent-fg-color);
+}
+
 /* ---------- 深色模式适配 ---------- */
 [data-md-color-scheme="slate"] .status-done    { background: #052e16; color: #4ade80; border-color: #166534; }
 [data-md-color-scheme="slate"] .status-wip     { background: #1c1400; color: #fcd34d; border-color: #92400e; }
