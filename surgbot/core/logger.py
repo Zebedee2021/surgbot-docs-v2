@@ -38,7 +38,13 @@ def _setup_logger() -> None:
     if _initialized:
         return
 
-    log_dir = Path(cfg.paths.log_dir)
+    # log_dir が相対パスの場合、core/ の 1 つ上（surgbot/）を基準にする
+    _surgbot_root = Path(__file__).resolve().parent.parent
+    log_dir_cfg = Path(cfg.paths.log_dir)
+    if log_dir_cfg.is_absolute():
+        log_dir = log_dir_cfg
+    else:
+        log_dir = _surgbot_root / log_dir_cfg
     log_dir.mkdir(parents=True, exist_ok=True)
 
     # 移除 loguru 默认 handler

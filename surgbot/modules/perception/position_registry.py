@@ -22,6 +22,28 @@ from core.logger import get_logger
 
 log = get_logger("position_registry")
 
+# surgbot 包根目录（无论从哪里运行都能正确定位 data/）
+# modules/perception/position_registry.py → parents[2] = surgbot/
+_SURGBOT_ROOT = Path(__file__).resolve().parents[2]
+
+
+def _resolve_registry_path() -> Path:
+    """
+    优先级：
+    1. cfg.paths.data_dir 如果是绝对路径 → 直接用
+    2. cfg.paths.data_dir 是相对路径 → 相对于 surgbot 包根目录
+    3. 兜底 → surgbot/data/instrument_registry.json
+    """
+    data_dir = Path(cfg.paths.data_dir)
+    if data_dir.is_absolute():
+        return data_dir / "instrument_registry.json"
+    # 相对路径：先试 surgbot 根目录，再试当前目录
+    candidate = _SURGBOT_ROOT / data_dir / "instrument_registry.json"
+    if candidate.exists():
+        return candidate
+    # 最后回退：当前工作目录（兼容直接 cd 到 surgbot 运行的情况）
+    return data_dir / "instrument_registry.json"
+
 
 # ──────────────────────────────────────────────
 # 数据结构
@@ -66,7 +88,7 @@ class PositionRegistry:
     _instance: Optional["PositionRegistry"] = None
 
     def __init__(self, json_path: Optional[Path] = None) -> None:
-        self._path = json_path or Path(cfg.paths.data_dir) / "instrument_registry.json"
+        self._path = json_path or _resolve_registry_path()
         self._slots: dict[str, SlotInfo] = {}          # slot_id → SlotInfo
         self._deliver_point: list[float] = []
         self._reset_pose: list[float] = []
