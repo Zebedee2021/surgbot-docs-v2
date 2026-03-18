@@ -1,1 +1,4 @@
 mkdocs-material>=9.5
+mkdocs-jupyter>=0.24
+loguru>=0.7
+plotly>=5.18

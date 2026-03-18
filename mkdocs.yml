@@ -56,6 +56,12 @@ plugins:
   - search:
       lang: zh
   - tags
+  - mkdocs-jupyter:
+      execute: true
+      execute_ignore:
+        - "notebooks/surgbot_demo.ipynb"   # 交互版在 Colab 运行，不在 CI 执行
+      include_source: true
+      kernel_name: python3
 
 markdown_extensions:
   - admonition
@@ -140,6 +146,10 @@ nav:
   - 全局追踪:
     - 问题与决策追踪: tracker/issues.md
     - 里程碑: tracker/milestones.md
+
+  - 在线演示:
+    - 分步演示（内嵌）: notebooks/demo_preview.ipynb
+    - Colab 交互版: notebooks/surgbot_demo.ipynb
 
   - 项目进展:
     - 五一冲刺计划: progress/mvp_sprint.md
