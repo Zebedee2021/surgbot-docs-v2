@@ -50,10 +50,16 @@ def _setup_logger() -> None:
     # 移除 loguru 默认 handler
     _loguru_logger.remove()
 
-    # 控制台：彩色，INFO+
+    # Notebook/演示模式：设置环境变量 SURGBOT_NOTEBOOK_MODE=1 可将控制台级别提升到 WARNING，
+    # 避免 INFO 日志污染 Jupyter cell 输出。文件日志不受影响。
+    import os
+    _notebook_mode = os.environ.get("SURGBOT_NOTEBOOK_MODE", "0") == "1"
+    _console_level = "WARNING" if _notebook_mode else "INFO"
+
+    # 控制台：彩色，正常模式 INFO+，notebook 模式 WARNING+
     _loguru_logger.add(
         sys.stderr,
-        level="INFO",
+        level=_console_level,
         colorize=True,
         format=(
             "<green>{time:HH:mm:ss}</green> | "

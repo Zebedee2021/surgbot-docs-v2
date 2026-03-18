@@ -352,7 +352,11 @@ class DobotArm:
         self._robot.stopForceDetection()
 
         if not taken:
-            log.warning(f"[Arm] Handover timeout ({timeout:.0f}s) — forcing gripper open")
+            if self._is_mock:
+                # mock 模式下没有真实医生，超时是预期行为，用 INFO 级别
+                log.info(f"[Arm] 等待超时 ({timeout:.0f}s)，自动松夹（真机由医生力反馈触发）")
+            else:
+                log.warning(f"[Arm] Handover timeout ({timeout:.0f}s) — forcing gripper open")
             self._robot.open_gripper(gripper_preset_id)
 
         return taken
