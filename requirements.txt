@@ -2,3 +2,6 @@ mkdocs-material>=9.5
 mkdocs-jupyter>=0.24
 loguru>=0.7
 plotly>=5.18
+# MuJoCo 物理仿真（仅 Python ≤ 3.12 可用，CI 中降级为 NumPy 等效模式）
+mujoco>=3.1; python_version<"3.13"
+numpy>=1.24

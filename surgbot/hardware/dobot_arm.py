@@ -178,20 +178,30 @@ class DobotArm:
 
     def __init__(self,
                  z_compensation_mm: float = 0.0,
-                 mock: bool = False):
+                 mock: bool = False,
+                 sim: bool = False):
 
         self._z_comp = z_compensation_mm or cfg.robot.z_grasp_offset
         self._current_instrument_id: str = ""
 
         # 初始化底层驱动
-        if mock:
+        if sim:
+            # MuJoCo 物理仿真模式
+            from hardware.mujoco_robot import MuJoCoRobot
+            self._robot = MuJoCoRobot()
+            self._is_mock = False
+            self._is_sim  = True
+            log.info("[Arm] MuJoCo 仿真模式已启动")
+        elif mock:
             # 明确要求 mock（演示/单测）→ INFO 级别
             self._robot = _MockRobot(ip=cfg.robot.ip, intentional=True)
             self._is_mock = True
+            self._is_sim  = False
         elif RobotControlModule is None:
             # 控制器找不到的被动降级 → WARNING 级别
             self._robot = _MockRobot(ip=cfg.robot.ip, intentional=False)
             self._is_mock = True
+            self._is_sim  = False
         else:
             log.info(f"[Arm] Connecting to Dobot @ {cfg.robot.ip} ...")
             self._robot = RobotControlModule(

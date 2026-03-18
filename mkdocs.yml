@@ -60,6 +60,7 @@ plugins:
       execute: true
       execute_ignore:
         - "notebooks/surgbot_demo.ipynb"   # 交互版在 Colab 运行，不在 CI 执行
+        - "notebooks/mujoco_demo.ipynb"    # MuJoCo 仿真演示，使用预烘焙输出
       include_source: true
       kernel_name: python3
 
@@ -149,6 +150,7 @@ nav:
 
   - 在线演示:
     - 分步演示（内嵌）: notebooks/demo_preview.ipynb
+    - MuJoCo 物理仿真: notebooks/mujoco_demo.ipynb
     - Colab 交互版: notebooks/surgbot_demo.ipynb
 
   - 项目进展:
